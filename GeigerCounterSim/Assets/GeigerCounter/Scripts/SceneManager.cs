@@ -7,10 +7,11 @@ using UnityEngine;
 public class SceneManager : MonoBehaviour
 {
 	// Object references
+	[SerializeField] GameObject player;
 	// Player motor script
-	// List of radiation sources
-	// Timer float
-	// 
+
+	List<GameObject> radSources; // List of radiation sources
+	float timer; // Timer float 
 
 	// Start is called before the first frame update
 	void Start()
