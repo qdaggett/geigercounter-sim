@@ -10,13 +10,14 @@ public class PlayerMotor : MonoBehaviour
 	// Component references
 	CharacterController controller;
 	Transform cameraRig;
-	Transform head;
+	Transform head; 
 
 	float sensitivity = 0.1f;
 	float maxVel = 1.0f; // The fastest the player will be allowed to travel
 	[SerializeField] SteamVR_Action_Boolean movePress = null; // Bool for whether or not the player is touching the touchpad
 	[SerializeField] SteamVR_Action_Vector2 moveVal = null; // The input through the touchpad ranges from -1 to 1 in the x and y axes
 	float velocity = 0.0f; // Player's current velocity
+	float gravity = 9.81f;
 
 	private void Awake()
 	{
@@ -74,6 +75,9 @@ public class PlayerMotor : MonoBehaviour
 			movementVector += rotation * (velocity * Vector3.forward) * Time.deltaTime;
 
 		}
+
+		// Process gravity for the player
+		movementVector.y -= gravity * Time.deltaTime; 
 
 		// Apply movement vector to controller
 		controller.Move(movementVector);
