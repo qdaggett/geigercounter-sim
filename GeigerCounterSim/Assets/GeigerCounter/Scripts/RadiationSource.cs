@@ -28,12 +28,25 @@ public class RadiationSource : MonoBehaviour
 		activity = 2.0f;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+	// Functions for controlling geiger counter sound in manager
+	private void OnTriggerEnter(Collider other)
+	{
+		if(other.transform.CompareTag("Player"))
+		{
+			manager.IsExposed(true);
+		}
+	}
 
-    }
+	private void OnTriggerExit(Collider other)
+	{
+		if(other.transform.CompareTag("Player"))
+		{
+			manager.IsExposed(false);
+			manager.UpdateCounter(0);
+		}
+	}
 
+	// Function for handling player dosage
 	private void OnTriggerStay(Collider collider)
 	{
 		// If the player is within the radius

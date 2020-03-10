@@ -10,12 +10,15 @@ public class SceneManager : MonoBehaviour
 	// Object references
 	[SerializeField] GameObject player;
 	[SerializeField] GameObject counter;
-	[SerializeField] TextMeshPro text;
+	[SerializeField] TextMeshPro currentRadText;
+	[SerializeField] TextMeshPro totalRadText;
+	[SerializeField] AudioSource counterSound;
 	// Player motor script
 
 	List<GameObject> radSources; // List of radiation sources
 	float exposure;
 	float timer; // Timer float 
+	bool exposed;
 
 	// Start is called before the first frame update
 	void Start()
@@ -23,21 +26,32 @@ public class SceneManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+	// Update is called once per frame
+	void Update()
+	{
+		if (exposed)
+		{
+			if (Random.Range(0, 10) > 6 && !counterSound.isPlaying)
+				counterSound.Play();
+		}
     }
 
 	// Function for updating how much radiation the player has been exposed to
 	public void UpdateRadiation(float update)
 	{
 		exposure += update;
+		totalRadText.text = exposure.ToString("F2");
 	}
 
 	// Function for updating text element on virtual geiger counter
 	public void UpdateCounter(float update)
 	{
-		text.text = update.ToString();
+		currentRadText.text = update.ToString("F2");
+
+	}
+
+	public void IsExposed(bool cond)
+	{
+		exposed = cond;
 	}
 }

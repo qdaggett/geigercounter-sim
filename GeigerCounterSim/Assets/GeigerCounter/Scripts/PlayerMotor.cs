@@ -13,7 +13,7 @@ public class PlayerMotor : MonoBehaviour
 	Transform head; 
 
 	float sensitivity = 0.1f;
-	float maxVel = 1.0f; // The fastest the player will be allowed to travel
+	float maxVel = 3.0f; // The fastest the player will be allowed to travel
 	[SerializeField] SteamVR_Action_Boolean movePress = null; // Bool for whether or not the player is touching the touchpad
 	[SerializeField] SteamVR_Action_Vector2 moveVal = null; // The input through the touchpad ranges from -1 to 1 in the x and y axes
 	float velocity = 0.0f; // Player's current velocity
