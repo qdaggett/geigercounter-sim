@@ -12,7 +12,8 @@ public class SceneManager : MonoBehaviour
 	[SerializeField] GameObject counter;
 	[SerializeField] TextMeshPro currentRadText;
 	[SerializeField] TextMeshPro totalRadText;
-	[SerializeField] AudioSource counterSound;
+	[SerializeField] AudioSource counterSoundSource;
+	[SerializeField] AudioClip[] counterSounds;
 	// Player motor script
 
 	List<GameObject> radSources; // List of radiation sources
@@ -22,19 +23,23 @@ public class SceneManager : MonoBehaviour
 
 	// Start is called before the first frame update
 	void Start()
-    {
-        
-    }
+	{
+
+	}
 
 	// Update is called once per frame
 	void Update()
 	{
 		if (exposed)
 		{
-			if (Random.Range(0, 10) > 6 && !counterSound.isPlaying)
-				counterSound.Play();
+			if (Random.Range(0, 10) > 6 && !counterSoundSource.isPlaying) // Change this to work based on distance from source
+			{
+				counterSoundSource.clip = counterSounds[Random.Range(0, 5)]; // Plays a random geiger counter sound from array
+				counterSoundSource.Play();
+			}
+				
 		}
-    }
+	}
 
 	// Function for updating how much radiation the player has been exposed to
 	public void UpdateRadiation(float update)
@@ -50,8 +55,14 @@ public class SceneManager : MonoBehaviour
 
 	}
 
+	// Function for updating if the player is within range of a radiation source
 	public void IsExposed(bool cond)
 	{
 		exposed = cond;
+	}
+
+	public void GameOver()
+	{
+
 	}
 }
