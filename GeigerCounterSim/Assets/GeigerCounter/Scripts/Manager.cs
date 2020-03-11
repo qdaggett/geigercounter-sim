@@ -5,7 +5,7 @@ using TMPro;
 
 // This script is used to keep track of important things in the scene like time, radiation, and the game's state
 
-public class SceneManager : MonoBehaviour
+public class Manager : MonoBehaviour
 {
 	// Object references
 	[SerializeField] GameObject player;

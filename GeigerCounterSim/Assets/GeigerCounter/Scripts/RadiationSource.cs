@@ -7,7 +7,7 @@ using UnityEngine;
 public class RadiationSource : MonoBehaviour
 {
 	// Component references
-	SceneManager manager;
+	Manager manager;
 	SphereCollider c_collider;
 
 	public float radius;
@@ -20,7 +20,7 @@ public class RadiationSource : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		manager = GameObject.Find("Manager").GetComponent<SceneManager>();
+		manager = GameObject.Find("Manager").GetComponent<Manager>();
 		c_collider = GetComponent<SphereCollider>();
 		exposureConstant = exposureConstantList[0];
 		element = elementList[0];
